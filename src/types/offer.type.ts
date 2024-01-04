@@ -1,7 +1,7 @@
-import { CityType } from "./city-type.enum";
-import { ComfortType } from "./comfort-type.enum";
-import { HouseType } from "./house-type.enum";
-import { User } from "./user.type";
+import { CityType } from './city-type.enum';
+import { ComfortType } from './comfort-type.enum';
+import { HouseType } from './house-type.enum';
+import { User } from './user.type';
 
 export type Offer = {
   title: string;
@@ -10,8 +10,8 @@ export type Offer = {
   city: CityType;
   prevImage: string;
   images: string[];
-  premium: Boolean;
-  favorites: Boolean;
+  premium: boolean;
+  favorites: boolean;
   rating: number;
   houseType: HouseType;
   roomCount: number;

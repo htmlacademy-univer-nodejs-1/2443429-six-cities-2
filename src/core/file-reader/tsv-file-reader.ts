@@ -1,31 +1,31 @@
-import { FileReader } from "./file-reader.interface.js";
-import { readFileSync } from "node:fs";
+import { FileReader } from './file-reader.interface.js';
+import { readFileSync } from 'node:fs';
 import {
   CityType,
   ComfortType,
   HouseType,
   Offer,
   UserType,
-} from "../../types/index.js";
+} from '../../types/index.js';
 
 export class TSVFileReader implements FileReader {
-  private rawData = "";
+  private rawData = '';
 
   constructor(private readonly filename: string) {}
 
   public read(): void {
-    this.rawData = readFileSync(this.filename, { encoding: "utf-8" });
+    this.rawData = readFileSync(this.filename, { encoding: 'utf-8' });
   }
 
   public toArray(): Offer[] {
     if (!this.rawData) {
-      throw new Error("File was not read");
+      throw new Error('File was not read');
     }
 
     return this.rawData
-      .split("\n")
+      .split('\n')
       .filter((row) => row.trim().length > 0)
-      .map((line) => line.split("\t"))
+      .map((line) => line.split('\t'))
       .map(
         ([
           title,
@@ -50,9 +50,9 @@ export class TSVFileReader implements FileReader {
           postDate: new Date(postDate),
           city: city as CityType,
           prevImage,
-          images: images.split(" "),
-          premium: premium.toLowerCase() === "true",
-          favorites: favorites.toLowerCase() === "true",
+          images: images.split(' '),
+          premium: premium.toLowerCase() === 'true',
+          favorites: favorites.toLowerCase() === 'true',
           rating: Number(rating),
           houseType: houseType as HouseType,
           roomCount: Number(roomCount),
@@ -60,14 +60,14 @@ export class TSVFileReader implements FileReader {
           price: Number(price),
           comfort: comfort as ComfortType,
           author: {
-            username: author.split(" ")[0],
-            email: author.split(" ")[1],
-            password: author.split(" ")[2],
-            type: author.split(" ")[3] as UserType,
+            username: author.split(' ')[0],
+            email: author.split(' ')[1],
+            password: author.split(' ')[2],
+            type: author.split(' ')[3] as UserType,
           },
           coordinate: {
-            latitude: Number(coordinate.split(" ")[0]),
-            longitude: Number(coordinate.split(" ")[1]),
+            latitude: Number(coordinate.split(' ')[0]),
+            longitude: Number(coordinate.split(' ')[1]),
           },
           commentCount: 0,
         })

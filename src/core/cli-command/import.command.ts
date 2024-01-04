@@ -1,8 +1,8 @@
-import { CliCommandInterface } from "./cli-command.interface.js";
-import { TSVFileReader } from "../file-reader/index.js";
+import { CliCommandInterface } from './cli-command.interface.js';
+import { TSVFileReader } from '../file-reader/index.js';
 
 export default class ImportCommand implements CliCommandInterface {
-  public readonly name = "--import";
+  public readonly name = '--import';
 
   public execute(...parameters: string[]): void {
     const [filename] = parameters;
